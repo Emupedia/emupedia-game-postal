@@ -36,7 +36,7 @@ else ifeq ($(macosx_x86),1)
   CLIENTEXE := $(BINDIR)/postal1-x86
 else
   target := linux_x86_64
-  CLIENTEXE := $(BINDIR)/postal1-x86_64
+  CLIENTEXE := $(BINDIR)/postal.html
 endif
 
 # ----------------------------------------------------- ... bleh.
@@ -268,7 +268,7 @@ EOBJS := $(foreach f,$(EOBJS),$(EBINDIR)/$(f))
 ESRCS := $(foreach f,$(ESRCS),$(SRCDIR)/$(f))
 
 # !!! FIXME: Get -Wall in here, some day.
-CFLAGS += -fsigned-char -DPLATFORM_UNIX -w
+CFLAGS += -fsigned-char -DPLATFORM_UNIX -w -Wno-narrowing
 
 ifeq ($(strip $(macosx)),true)
   CFLAGS += -DPLATFORM_MACOSX
@@ -300,25 +300,7 @@ ifeq ($(strip $(expiring_beta)),true)
   CFLAGS += -DBETAEXPIRE=$(shell date +%s)
 endif
 
-ifeq ($(strip $(macosx)),true)
-  CFLAGS += -arch i386 -mmacosx-version-min=10.6
-  LDFLAGS += -arch i386 -mmacosx-version-min=10.6
-  LDFLAGS += -framework CoreFoundation -framework Cocoa
-  LIBS += SDL2/libs/macosx/libSDL2-2.0.0.dylib
-  STEAMLDFLAGS += steamworks/sdk/redistributable_bin/osx32/libsteam_api.dylib
-else
-  ifeq ($(CPUARCH),arm)
-    LIBS += -lSDL2
-  else
-	ifeq ($(CPUARCH),x86_64)
-	  LIBS += -lSDL2
-	else
-	  LIBS += SDL2/libs/linux-x86/libSDL2-2.0.so.0
-	  LDFLAGS += -Wl,-rpath,\$$ORIGIN
-	  STEAMLDFLAGS += steamworks/sdk/redistributable_bin/linux32/libsteam_api.so
-	endif
- endif
-endif
+
 
 ifeq ($(strip $(steamworks)),true)
   CFLAGS += -DWITH_STEAMWORKS=1 -Isteamworks/sdk/public

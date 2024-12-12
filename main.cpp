@@ -144,7 +144,9 @@
 //  then call the redefined main() in this file...
 #include "SDL.h"
 #endif
-
+#ifdef __EMSCRIPTEN__
+#include "emscripten.h"
+#endif
 #if WITH_STEAMWORKS
 #ifdef WIN32
 #define WIN32_LEAN_AND_MEAN 1
@@ -1043,7 +1045,6 @@ rspProfileOff();
 		TRACE("main(): Couldn't open prefs file: %s !\n", g_pszPrefFileName);
 		rspMsgBox(RSP_MB_ICN_STOP | RSP_MB_BUT_OK, g_pszCriticalErrorTitle, g_pszPrefOpenError);
 		}
-
     return 0;
 	}
 
