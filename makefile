@@ -306,7 +306,7 @@ ifeq ($(strip $(steamworks)),true)
   CFLAGS += -DWITH_STEAMWORKS=1 -Isteamworks/sdk/public
   LDFLAGS += $(STEAMLDFLAGS)
 endif
-
+CFLAGS += -pthread
 CFLAGS += -DALLOW_TWINSTICK
 
 .PHONY: all bindir
@@ -338,7 +338,7 @@ $(BINDIR)/%.a: $(SRCDIR)/%.a
 	ranlib $@
 
 $(CLIENTEXE): $(BINDIR) $(OBJS) $(LIBS)
-	$(LINKER) -o $(CLIENTEXE) $(OBJS) $(LDFLAGS) $(LIBS) -lSDL2 --preload-file res --preload-file title --preload-file POSTAL.INI
+	$(LINKER) -o $(CLIENTEXE) $(OBJS) $(LDFLAGS) $(LIBS) -lSDL2 --preload-file res --preload-file title --preload-file POSTAL.INI -sMAXIMUM_MEMORY=1023MB -sALLOW_MEMORY_GROWTH -sASYNCIFY
 
 $(BINDIR) :
 	$(MAKE) bindir
