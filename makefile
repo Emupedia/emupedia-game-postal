@@ -36,7 +36,7 @@ else ifeq ($(macosx_x86),1)
   CLIENTEXE := $(BINDIR)/postal1-x86
 else
   target := linux_x86_64
-  CLIENTEXE := $(BINDIR)/postal.html
+  CLIENTEXE := web/index.html
 endif
 
 # ----------------------------------------------------- ... bleh.
@@ -45,15 +45,15 @@ ifeq ($(strip $(target)),linux_x86)
   macosx := false
   CPUARCH := x86
   CC := gcc
-  CXX := g++
-  LINKER := g++ -m32
+  CXX := em++
+  LINKER := em++ -m32
 endif
 ifeq ($(strip $(target)),linux_x86_64)
   macosx := false
   CPUARCH := x86_64
   CC ?= gcc
-  CXX ?= g++
-  LINKER ?= g++
+  CXX ?= em++
+  LINKER ?= em++
 endif
 ifeq ($(strip $(target)),macosx_x86)
   macosx := true
@@ -338,7 +338,7 @@ $(BINDIR)/%.a: $(SRCDIR)/%.a
 	ranlib $@
 
 $(CLIENTEXE): $(BINDIR) $(OBJS) $(LIBS)
-	$(LINKER) -o $(CLIENTEXE) $(OBJS) $(LDFLAGS) $(LIBS)
+	$(LINKER) -o $(CLIENTEXE) $(OBJS) $(LDFLAGS) $(LIBS) -lSDL2 --preload-file res --preload-file title --preload-file POSTAL.INI
 
 $(BINDIR) :
 	$(MAKE) bindir

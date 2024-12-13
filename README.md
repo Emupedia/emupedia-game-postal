@@ -1,1 +1,11 @@
-It was in September, 1997 – over 20 years ago – when us humble folk from Running With Scissors unleashed our Robotron-inspired isometric shooter POSTAL to the unsuspecting public at large. It was an instant hit, grabbing the attention of gamers, parents and politicians across the country, and we’ve been supporting and updating it ever since. 20 years later, we've entrusted our fans with the future of our game, by releasing its source code to the public.
+# POSTAL WASM
+
+a port of POSTAL 1 to WebAssembly using Emscripten.
+
+## Building:
+
+- Download POSTAL 1 from Steam
+- View the game files
+- Copy `res`, `title`, and `POSTAL.INI` to the repo
+- Run `emmake make` in the respository
+- The resulting build will be stored in the web folder
