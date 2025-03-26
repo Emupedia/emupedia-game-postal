@@ -3,8 +3,12 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>POSTAL WASM</title>
+    <title>Postal</title>
     <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
       .emscripten { padding-right: 0; margin-left: auto; margin-right: auto; display: block; }
       div.emscripten { text-align: center; }
       /* the canvas *must not* have any border or padding, or mouse coords will be wrong */
@@ -30,14 +34,13 @@
     </style>
   </head>
   <body>
-    <hr/>
     <figure style="overflow:visible;" id="spinner"></figure>
     <div class="emscripten" id="status">Downloading POSTAL...</div>
     <div class="emscripten">
       <progress value="0" max="100" id="progress" hidden=1></progress>  
     </div>
     <div class="emscripten_border">
-      <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" tabindex=-1></canvas>
+      <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" tabindex=-1 onclick="requestPointerLock()"></canvas>
     </div>
     <div class="emscripten">
       <input type="checkbox" id="pointerLock" checked>Lock/hide mouse pointer</input>

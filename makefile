@@ -338,7 +338,7 @@ $(BINDIR)/%.a: $(SRCDIR)/%.a
 	ranlib $@
 
 $(CLIENTEXE): $(BINDIR) $(OBJS) $(LIBS)
-	$(LINKER) -o $(CLIENTEXE) $(OBJS) $(LDFLAGS) $(LIBS) -lSDL2 --shell-file shell.html --preload-file res --preload-file title --preload-file POSTAL.INI -sMAXIMUM_MEMORY=1023MB -sALLOW_MEMORY_GROWTH -sASYNCIFY -sASYNCIFY_STACK_SIZE=8192
+	$(LINKER) -o $(CLIENTEXE) $(OBJS) $(LDFLAGS) $(LIBS) -lSDL2 --use-preload-cache --shell-file shell.html --preload-file res --preload-file title --preload-file POSTAL.INI -sMAXIMUM_MEMORY=1023MB -sALLOW_MEMORY_GROWTH -sASYNCIFY -sASYNCIFY_STACK_SIZE=8192
 
 $(BINDIR) :
 	$(MAKE) bindir
