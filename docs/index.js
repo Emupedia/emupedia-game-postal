@@ -5068,7 +5068,7 @@ var ASM_CONSTS = {
                                            (canvasContainer['webkitRequestFullscreen'] ? () => canvasContainer['webkitRequestFullscreen'](Element['ALLOW_KEYBOARD_INPUT']) : null) ||
                                            (canvasContainer['webkitRequestFullScreen'] ? () => canvasContainer['webkitRequestFullScreen'](Element['ALLOW_KEYBOARD_INPUT']) : null);
 
-        canvasContainer.requestFullscreen();
+        //canvasContainer.requestFullscreen();
       },
   requestFullScreen() {
         abort('Module.requestFullScreen has been replaced by Module.requestFullscreen (without a capital S)');
@@ -6642,6 +6642,11 @@ var ASM_CONSTS = {
       target.style.width = cssWidth + 'px';
       target.style.height = cssHeight + 'px';
 
+      setTimeout(function() {
+        target.style.width = '100%';
+        target.style.height = 'auto';
+      }, 1000);
+
       if (strategy.filteringMode == 1) {
         target.style.imageRendering = 'optimizeSpeed';
         target.style.imageRendering = '-moz-crisp-edges';
@@ -6668,7 +6673,7 @@ var ASM_CONSTS = {
       }
 
       if (target.requestFullscreen) {
-        target.requestFullscreen();
+        //target.requestFullscreen();
       } else if (target.webkitRequestFullscreen) {
         target.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
       } else {
