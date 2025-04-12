@@ -5068,7 +5068,7 @@ var ASM_CONSTS = {
                                            (canvasContainer['webkitRequestFullscreen'] ? () => canvasContainer['webkitRequestFullscreen'](Element['ALLOW_KEYBOARD_INPUT']) : null) ||
                                            (canvasContainer['webkitRequestFullScreen'] ? () => canvasContainer['webkitRequestFullScreen'](Element['ALLOW_KEYBOARD_INPUT']) : null);
 
-        //canvasContainer.requestFullscreen();
+        canvasContainer.requestFullscreen();
       },
   requestFullScreen() {
         abort('Module.requestFullScreen has been replaced by Module.requestFullscreen (without a capital S)');
@@ -6672,13 +6672,14 @@ var ASM_CONSTS = {
         JSEvents_resizeCanvasForFullscreen(target, strategy);
       }
 
-      if (target.requestFullscreen) {
-        //target.requestFullscreen();
+      /*if (target.requestFullscreen) {
+        // target.requestFullscreen();
       } else if (target.webkitRequestFullscreen) {
         target.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
       } else {
         return JSEvents.fullscreenEnabled() ? -3 : -1;
-      }
+      }*/
+      return JSEvents.fullscreenEnabled() ? -3 : -1;
 
       currentFullscreenStrategy = strategy;
 
